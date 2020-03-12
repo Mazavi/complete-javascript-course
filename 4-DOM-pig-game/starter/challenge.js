@@ -24,8 +24,8 @@ document.querySelector('.btn-roll').addEventListener('click', function () {
         diceDOM.style.display = 'block';
         diceDOM.src = 'dice-' + dice + '.png';
         if (dice === 6 && latestDice === 6) {
-            scores[activePlayer] =0;
-            document.querySelector('#score-' + activePlayer).textContent = '0';
+            scores[activePlayer] = 0;
+            document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
             nextPlayer();
         } else if (dice !== 1) {
             //Add Score
@@ -48,18 +48,9 @@ document.querySelector('.btn-hold').addEventListener('click', function () {
 
         // Update the UI
         document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
-        var input = document.querySelector('.final-score').value;
-        // Undefined, 0, null or "" are COERCED to false
-        //Anything else is coerced to true
-        var winningScore;
-        if(input) {
-           var winningScore = input;
-        } else {
-            winningScore = 100;
-        }
 
         // Check if player won the game
-        if (scores[activePlayer] >= winningScore) {
+        if (scores[activePlayer] >= 100) {
             document.querySelector('#name-' + activePlayer).textContent = 'Winner';
             document.querySelector('.dice').style.display = 'none';
             document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
